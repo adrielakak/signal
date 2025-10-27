@@ -94,7 +94,10 @@ def load_config(config_path: Path) -> Dict[str, Any]:
 def banner(console: Console) -> None:
     title = "Lazy Backtester"
     if HAVE_FIGLET:
-        ascii_art = pyfiglet.figlet_format(title, font="Slant")
+        try:
+            ascii_art = pyfiglet.figlet_format(title, font="Slant")
+        except Exception:
+            ascii_art = pyfiglet.figlet_format(title)
         console.print(f"[bold cyan]{ascii_art}[/bold cyan]")
     else:
         console.rule(f"[bold cyan]{title}[/bold cyan]")
