@@ -243,6 +243,9 @@ def run_webhook_server(console: Console, cfg: Dict[str, Any], signals_csv: Path)
 
     host = cfg.get("webhook", {}).get("host", "0.0.0.0")
     port = int(cfg.get("webhook", {}).get("port", 5000))
+    # Render provides PORT dynamically; honor it if present
+    port = int(os.environ.get("PORT", port))
+    host = os.environ.get("HOST", host)
     console.print(Panel.fit(f"Starting webhook server at http://{host}:{port}/webhook", title="Webhook"))
     ensure_signals_csv(signals_csv)
     run_server(host=host, port=port, csv_path=signals_csv)
@@ -277,4 +280,3 @@ def main(argv: Optional[list[str]] = None) -> None:
 
 if __name__ == "__main__":
     main()
-
