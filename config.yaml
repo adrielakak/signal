@@ -1,0 +1,19 @@
+# Default configuration for Lazy Backtester
+
+webhook:
+  host: 0.0.0.0
+  port: 5000
+
+exchange: binance
+
+defaults:
+  symbol: CHEEMSC/USDT
+  timeframe: 1h
+  capital: 1000.0
+  stop_loss: 0.05
+  take_profit: 0.10
+  start_date:
+  end_date:
+
+signals_csv: signals.csv
+
